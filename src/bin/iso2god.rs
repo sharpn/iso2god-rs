@@ -97,13 +97,20 @@ fn main() -> Result<(), Error> {
     {
         let title_id = format!("{:08X}", exe_info.title_id);
         let name = game_list::find_title_by_id(exe_info.title_id).unwrap_or("(unknown)".to_owned());
+        let media_id = format!("{:08X}", exe_info.media_id);
+        let c_type = format!("{:08X}", content_type as u32);
 
         println!("Title ID: {title_id}");
         println!("    Name: {name}");
+        println!("    Media ID: {media_id}");
+        println!("    Content type: {c_type}");
+
         match content_type {
             ContentType::GamesOnDemand => println!("    Type: Games on Demand"),
             ContentType::XboxOriginal => println!("    Type: Xbox Original"),
         }
+
+        
     }
 
     if args.dry_run {
